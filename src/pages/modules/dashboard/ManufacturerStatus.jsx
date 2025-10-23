@@ -45,7 +45,7 @@ const ManufacturerStatus = () => {
   };
 
   return (
-    <div className="w-full bg-white p-4 rounded-2xl shadow-lg flex flex-col items-center min-h-[360px]">
+    <div className="w-full bg-[#F5F5F5] p-4 rounded-2xl shadow-lg flex flex-col items-center min-h-[360px]">
       <h2 className="w-full text-lg font-bold text-gray-800 mb-4 text-left">
         Manufacturer
       </h2>

@@ -81,7 +81,7 @@ const Manufacturer = () => {
   ]);
 
   const [page, setPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(9);
   const [search, setSearch] = useState("");
 
   const navigate = useNavigate();
@@ -134,101 +134,101 @@ const Manufacturer = () => {
 
   return (
     <div
-      style={{ backgroundColor: "#ffffff" }} // main manufacture background
       className="p-4 h-full overflow-y-auto flex flex-col gap-2"
     >
       <Header2 />
 
-      {/* Top Controls */}
-      <div className="bg-white flex flex-col md:flex-row justify-between items-start md:items-center my-5 p-4 md:p-8 text-gray-600 font-semibold gap-4 flex-wrap">
-        {/* Left Controls */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span>Show</span>
-            <select
-              value={rowsPerPage}
-              onChange={handleRowsPerPage}
-              className="bg-gray-100 p-2 border rounded w-[60px]"
-            >
-              {[10].map((num) => (
-                <option key={num} value={num}>
-                  {num}
-                </option>
-              ))}
-            </select>
-            <span>Entries</span>
-          </div>
-        </div>
+{/* Top Controls */}
+<div className="flex flex-col md:flex-row justify-between items-center p-2 md:p-4 gap-2 md:gap-4">
 
-        {/* Center: search (keeps centered between left and right) */}
-        <div className="w-full md:flex-1 flex justify-center my-3 md:my-0">
-          <div className="relative w-[240px] max-w-full">
-            <img
-              src={searchIcon}
-              alt="Search"
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 h-6 w-6 pointer-events-none"
-            />
-            <input
-              type="text"
-              placeholder="Search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="pl-12 h-10 border rounded-md w-[240px] bg-[#F5F5F5] border-[#263138] text-[16px] text-[#606060] font-poppins"
-            />
-          </div>
-        </div>
+  {/* Left Controls */}
+  <div className="flex items-center gap-2 flex-wrap">
+    <span>Show</span>
+    <select
+      value={rowsPerPage}
+      onChange={handleRowsPerPage}
+      className="bg-gray-100 p-2 border rounded w-[60px] md:w-[80px] text-sm"
+    >
+      {[5, 10, 25].map((num) => (
+        <option key={num} value={num}>
+          {num}
+        </option>
+      ))}
+    </select>
+    <span>Entries</span>
+  </div>
 
-        {/* Add Manufacturer Button */}
-        <div className="w-full md:w-auto">
-          <button
-            onClick={handleAdd}
-            className="bg-[#7EC1B1] w-full md:w-[200px] text-white p-2 rounded-lg hover:bg-[#65a89d] transition"
-          >
-            Add Manufacturer
-          </button>
-        </div>
-      </div>
+  {/* Center: Search */}
+  <div className="flex-1 flex justify-center w-full md:w-auto mb-2 md:mb-0">
+
+    <div className="relative w-full max-w-[320px]">
+      <img
+        src={searchIcon}
+        alt="Search"
+        className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 pointer-events-none"
+      />
+      <input
+        type="text"
+        placeholder="Search"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="pl-12 h-10 border rounded-md w-full bg-[#F5F5F5] border-[#263138] text-[14px] md:text-[16px] text-[#606060] font-poppins"
+      />
+    </div>
+  </div>
+
+  {/* Right: Add Manufacturer Button */}
+  <div className="w-full md:w-auto flex justify-end">
+    <button
+      onClick={handleAdd}
+      className="bg-[#7EC1B1] w-full md:w-[200px] text-white p-2 rounded-lg hover:bg-[#65a89d] transition"
+    >
+      Add Manufacturer
+    </button>
+  </div>
+</div>
+
 
       {/* Table */}
       <div className="bg-white p-4 w-full rounded-lg shadow overflow-x-auto">
-        <table className="table-auto w-full border border-gray-400 min-w-[700px]">
+        <table className="table-auto w-full border border-gray-400 min-w-[600px] sm:min-w-[700px]">
           <thead>
-            <tr className="bg-[#F3F4F6] text-center text-xl">
-              <th className="h-[60px] font-poppins font-medium text-[18px] text-black">
+            <tr className="bg-[#F3F4F6] text-center text-base sm:text-xl">
+              <th className="h-[60px] font-poppins font-medium text-[14px] sm:text-[18px] text-black">
                 Sr.No.
               </th>
-              <th className="p-3 font-poppins font-medium text-[18px] text-black">
+              <th className="p-3 font-poppins font-medium text-[14px] sm:text-[18px] text-black">
                 Manufacturer Name
               </th>
-              <th className="p-3 font-poppins font-medium text-[18px] text-black">
+              <th className="p-3 font-poppins font-medium text-[14px] sm:text-[18px] text-black">
                 Phone No.
               </th>
-              <th className="p-3 font-poppins font-medium text-[18px] text-black">
+              <th className="p-3 font-poppins font-medium text-[14px] sm:text-[18px] text-black hidden sm:table-cell">
                 Email
               </th>
-              <th className="p-3 font-poppins font-medium text-[18px] text-black">
+              <th className="p-3 font-poppins font-medium text-[14px] sm:text-[18px] text-black hidden lg:table-cell">
                 Address
               </th>
-              <th className="p-3 font-poppins font-medium text-[18px] text-black">
+              <th className="p-3 font-poppins font-medium text-[14px] sm:text-[18px] text-black">
                 Action
               </th>
             </tr>
           </thead>
           <tbody className="text-center">
             {paginatedRows.map((row) => (
-              <tr key={row.id} className="text-black font-poppins text-[16px]">
+              <tr key={row.id} className="text-black font-poppins text-[14px] sm:text-[16px]">
                 <td className="p-3">{row.id}</td>
                 <td className="p-3">{row.name}</td>
                 <td className="p-3">{row.phone}</td>
-                <td className="p-3">{row.email}</td>
-                <td className="p-3">{row.address}</td>
+                <td className="p-3 hidden sm:table-cell">{row.email}</td>
+                <td className="p-3 hidden lg:table-cell">{row.address}</td>
                 <td className="p-3 flex gap-2 justify-center flex-wrap">
                   <div
                     className="flex items-center justify-center cursor-pointer"
                     onClick={() => handleView(row)}
                     title="View"
                   >
-                    <div style={{ width: 30, height: 24 }}>
+                    <div style={{ width: 26, height: 20 }}>
                       <GoEye className="text-[#0088FF] w-full h-full" />
                     </div>
                   </div>
@@ -236,12 +236,12 @@ const Manufacturer = () => {
                     className="flex items-center justify-center rounded cursor-pointer"
                     onClick={() => handleEdit(row)}
                   >
-                    <div style={{ width: 30, height: 24 }}>
+                    <div style={{ width: 26, height: 20 }}>
                       <FaRegEdit className="text-[#0088FF] w-full h-full" />
                     </div>
                   </div>
                   <div className="flex items-center justify-center rounded cursor-pointer">
-                    <div style={{ width: 30, height: 24 }}>
+                    <div style={{ width: 26, height: 20 }}>
                       <RiDeleteBinLine className="text-[#FF383C] w-full h-full" />
                     </div>
                   </div>
@@ -252,8 +252,8 @@ const Manufacturer = () => {
         </table>
 
         {/* Pagination */}
-        <div className="flex flex-col md:flex-row justify-between items-center mt-4 gap-2 flex-wrap font-semibold text-gray-700">
-          <span>
+        <div className="flex flex-col md:flex-row justify-between items-center mt-4 gap-2 flex-wrap font-semibold text-gray-700 text-sm">
+          <span className="whitespace-nowrap">
             {filteredRows.length === 0 ? (
               "Showing 0 to 0 of 0 entries"
             ) : (
@@ -265,11 +265,11 @@ const Manufacturer = () => {
               </>
             )}
           </span>
-          <div className="flex flex-wrap gap-2 text-[#7EC1B1] justify-center bg-white">
+          <div className="flex flex-wrap gap-2 text-[#7EC1B1] justify-center bg-white overflow-x-auto">
             <button
               onClick={() => handlePageChange(page - 1)}
               disabled={page === 1}
-              className="px-4 py-2 border border-[#7EC1B1] rounded-lg"
+              className="px-3 py-1 border border-[#7EC1B1] rounded-lg text-sm"
             >
               Previous
             </button>
@@ -279,7 +279,7 @@ const Manufacturer = () => {
                 onClick={() => handlePageChange(idx + 1)}
                 className={`p-2 border rounded-lg border-[#7EC1B1] ${
                   page === idx + 1 ? "bg-[#7EC1B1] text-white" : ""
-                } w-[36px]`}
+                } w-[36px] text-sm`}
               >
                 {idx + 1}
               </button>
@@ -287,7 +287,7 @@ const Manufacturer = () => {
             <button
               onClick={() => handlePageChange(page + 1)}
               disabled={page === totalPages}
-              className="px-4 py-2 border border-[#7EC1B1] rounded-lg"
+              className="px-3 py-1 border border-[#7EC1B1] rounded-lg text-sm"
             >
               Next
             </button>
