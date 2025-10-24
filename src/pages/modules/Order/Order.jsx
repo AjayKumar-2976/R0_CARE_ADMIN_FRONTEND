@@ -22,7 +22,7 @@ const Order = () => {
   ]);
 
   const [page, setPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(9);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
 
