@@ -101,6 +101,10 @@ const LeadTimeline = () => {
       description: "Product: Water Purifier",
       date: "Thu, 2 Oct | 03:15 PM",
     },
+    {
+      title: "Case Closed",
+    
+    },
   ];
 
   return (

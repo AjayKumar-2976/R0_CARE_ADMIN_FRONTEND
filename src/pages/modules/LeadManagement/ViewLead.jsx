@@ -51,7 +51,7 @@ const LeadView = () => {
             </span>
           </div>
           <span
-            className={`px-3 py-1 rounded-full font-semibold text-xl mt-2 ${getStatusColor(
+            className={`px-7 py-2 rounded-full font-semibold text-sm mt-2 ${getStatusColor(
               lead.status
             )}`}
           >
@@ -143,21 +143,21 @@ const LeadView = () => {
 
 
         {/* ✅ Lead Assigned To - Only for In Progress / Completed */}
-{(lead.status?.toLowerCase() === "in progress" ||
-  lead.status?.toLowerCase() === "completed") && (
-  <>
-    <div className="border border-gray-300 rounded-lg p-4 bg-white mt-4">
-      <div className="flex items-center gap-2 mb-2">
-        <MdPerson className="text-xl text-gray-700" />
-        <p className="font-medium text-lg text-black">Lead Assigned To:</p>
-      </div>
-      <p className="text-[#7EC1B1] ml-6">{lead.assignedTo || "NA"}</p>
-    </div>
+        {(lead.status?.toLowerCase() === "in progress" ||
+          lead.status?.toLowerCase() === "completed") && (
+            <>
+              <div className="border border-gray-300 rounded-lg p-4 bg-white mt-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <MdPerson className="text-xl text-gray-700" />
+                  <p className="font-medium text-lg text-black">Lead Assigned To:</p>
+                </div>
+                <p className="text-[#7EC1B1] ml-6">{lead.assignedTo || "NA"}</p>
+              </div>
 
-    {/* ⏳ Timeline Box Below Lead Assigned To */}
-    <LeadTimeline />
-  </>
-)}
+              {/* ⏳ Timeline Box Below Lead Assigned To */}
+              <LeadTimeline />
+            </>
+          )}
 
 
         {/* Price Details */}
@@ -169,11 +169,15 @@ const LeadView = () => {
           </div>
           <div className="flex justify-between">
             <span>Discount:</span>
-            <span>{lead.priceDetails?.discount || "0"}</span>
+            <span className="text-[#34C759]">{lead.priceDetails?.discount || "0"}</span>
           </div>
           <div className="flex justify-between">
             <span>Platform Fee:</span>
             <span>{lead.priceDetails?.platformFee || "0"}</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Debit Card Off:</span>
+            <span className="text-[#34C759]">{lead.priceDetails?.debitcardoff || "0"}</span>
           </div>
           <div className="flex justify-between">
             <span>Delivery Charges:</span>
@@ -186,63 +190,111 @@ const LeadView = () => {
             <span>{lead.priceDetails?.totalAmount || "0"}</span>
           </div>
 
-       
 
-{/* Dynamic Offers & Payment Info */}
-<div className="border-t border-dotted border-gray-400 py-4 mt-3">
-  {/* Total Saved */}
-  <div className="text-md text-[#7EC1B1] mt-1">
-    Total saved on this order: {lead.priceDetails?.totalSaved ? `₹${lead.priceDetails.totalSaved}` : "₹0"}
-  </div>
 
-  {/* Offers */}
-  {lead.priceDetails?.offers?.length > 0 && (
-    <div className="mt-4 p-3 flex items-start gap-3">
-      {/* % Icon */}
-      <div className="w-9 h-9 rounded-full bg-[#7EC1B1] flex items-center justify-center text-white">
-        <span className="text-base font-semibold">%</span>
-      </div>
+          {/* Dynamic Offers & Payment Info */}
+          <div className="border-t border-dotted border-gray-400 py-4 mt-3">
+            {/* Total Saved */}
+            <div className="text-md text-[#7EC1B1] mt-1">
+              Total saved on this order: {lead.priceDetails?.totalSaved ? `₹${lead.priceDetails.totalSaved}` : "₹0"}
+            </div>
 
-      {/* Offers List */}
-      <div className="flex-1">
-        {lead.priceDetails.offers.map((offer, index) => (
-          <div key={index} className="mb-2">
-            <div className="font-semibold text-[#263138]">{offer.title}</div>
-            <div className="text-sm text-[#263138] pb-3 border-b border-dotted border-[#CACACA]">
-              {offer.amount ? `₹${offer.amount}` : "NA"}
+            {/* Offers */}
+            {lead.priceDetails?.offers?.length > 0 && (
+              <div className="mt-4 p-3 flex items-start gap-3">
+                {/* % Icon */}
+                <div className="w-9 h-9 rounded-full bg-[#7EC1B1] flex items-center justify-center text-white">
+                  <span className="text-base font-semibold">%</span>
+                </div>
+
+                {/* Offers List */}
+                <div className="flex-1">
+                  {lead.priceDetails.offers.map((offer, index) => (
+                    <div key={index} className="mb-2">
+                      <div className="font-semibold text-[#263138]">{offer.title}</div>
+                      <div className="text-sm text-[#263138] pb-3 border-b border-dotted border-[#CACACA]">
+                        {offer.amount ? `₹${offer.amount}` : "NA"}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Payment Mode */}
+            <div className="mt-2 flex  text-[#263138] font-medium">
+              <span>Payment Mode:</span>
+              <span>{lead.priceDetails?.paymentMode || "Debit Card"}</span>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
-  )}
+          {/* Customer Feedback Section */}
+          <div className="border-t border-dotted border-gray-400 mt-6 pt-4">
+            {/* ✅ Show Customer Feedback only when status is Completed */}
+            {lead.status?.toLowerCase() === "completed" && (
+              <div className="border-t border-dotted border-gray-400 mt-6 pt-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <LuInfo className="text-xl text-gray-700" />
+                  <p className="font-medium text-lg text-black">Customer Feedback</p>
+                </div>
 
-  {/* Payment Mode */}
-  <div className="mt-2 flex justify-between text-[#263138] font-medium">
-    <span>Payment Mode:</span>
-    <span>{lead.priceDetails?.paymentMode || "NA"}</span>
-  </div>
-</div>
+                <div className="flex flex-col md:flex-row items-start gap-4 bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+                  {/* Customer Image */}
+                  <img
+                    src="https://i.pravatar.cc/50"
+                    alt="Customer"
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
 
-</div>
+                  {/* Feedback Content */}
+                  <div className="flex-1">
+                    {/* Stars */}
+                    <div className="flex items-center text-yellow-400 mb-1">
+                      <span className="material-symbols-outlined text-base">star</span>
+                      <span className="material-symbols-outlined text-base">star</span>
+                      <span className="material-symbols-outlined text-base">star</span>
+                      <span className="material-symbols-outlined text-base">star</span>
+                      <span className="material-symbols-outlined text-base text-gray-300">star</span>
+                    </div>
 
+                    {/* Feedback Text */}
+                    <p className="text-gray-700 leading-relaxed">
+                      Lorem ipsum dolor sit amet consectetur. Sed lacus facilisi semper lacus
+                      rhoncus cursus. Nisl ac lacus morbi pellentesque diam. Phasellus eget
+                      vitae etiam mauris.
+                    </p>
 
-        {/* Assign Lead Button */}
-        <div className="flex justify-center mt-4">
-{lead.status?.toLowerCase() === "new" && (
-  <div className="flex justify-center mt-4">
-    <button
-      onClick={() => navigate("/lead-management/assign-lead", { state: { lead } })}
-      className="bg-[#3A953A] text-white font-semibold px-6 py-2 rounded-lg hover:bg-[#67b09b] transition"
-    >
-      Assign Lead
-    </button>
-  </div>
-)}
+                    {/* Reply Button */}
+                    <button className="mt-3 border border-[#7EC1B1] text-[#7EC1B1] rounded-md px-4 py-1 text-sm font-medium hover:bg-[#7EC1B1] hover:text-white transition">
+                      Reply
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
 
+          </div>
         </div>
+
+      </div>
+
+
+      {/* Assign Lead Button */}
+      <div className="flex justify-center mt-4">
+        {lead.status?.toLowerCase() === "new" && (
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={() => navigate("/lead-management/view/assign-lead", { state: { lead } })}
+              className="bg-[#3A953A] text-white font-semibold px-8 py-1 rounded-lg cursor-pointer transition"
+            >
+              Assign Lead
+            </button>
+          </div>
+        )}
+
       </div>
     </div>
+  
+    
   );
 };
 

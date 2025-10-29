@@ -1,93 +1,9 @@
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import resetImage from "../../assets/reset-password.jpg"; // Your illustration image
 
-// function ResetPassword() {
-//   const [password, setPassword] = useState("");
-//   const [confirmPassword, setConfirmPassword] = useState("");
-//   const [showPassword, setShowPassword] = useState(false);
-//   const navigate = useNavigate();
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (password === confirmPassword && password.length >= 6) {
-//       // ✅ Perform your password reset logic here
-//       navigate("/dashboard"); // Redirect after successful reset
-//     } else {
-//       alert("Passwords do not match or are too short (min 6 chars)");
-//     }
-//   };
-
-//   return (
-//     <div className="min-h-screen flex items-center justify-center bg-[#7EC1B1] p-4">
-//       <div className="w-full max-w-4xl flex flex-col md:flex-row items-center gap-12">
-
-//         {/* Left Side: Illustration */}
-//         <div className="w-full md:w-1/2 flex justify-center">
-//           <img
-//             src={resetImage}
-//             alt="Reset Password"
-//             className="w-80 h-auto object-contain"
-//           />
-//         </div>
-
-//         {/* Right Side: Reset Password Form */}
-//         <div className="w-full md:w-2xl flex justify-center">
-//           <form
-//             onSubmit={handleSubmit}
-//             className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm"
-//           >
-//             <h1 className="text-2xl font-bold text-center text-gray-800 mb-2">
-//               Reset Password
-//             </h1>
-//             <p className="text-center text-gray-500 mb-8">
-//               Please enter new password.
-//             </p>
-
-//             {/* New Password */}
-//             <div className="mb-4 relative">
-//               <input
-//                 type={showPassword ? "text" : "password"}
-//                 placeholder="New Password"
-//                 value={password}
-//                 onChange={(e) => setPassword(e.target.value)}
-//                 className="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition"
-//               />
-             
-//             </div>
-
-//             {/* Confirm Password */}
-//             <div className="mb-6 relative">
-//               <input
-//                 type={showPassword ? "text" : "password"}
-//                 placeholder="Confirm Password"
-//                 value={confirmPassword}
-//                 onChange={(e) => setConfirmPassword(e.target.value)}
-//                 className="w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition"
-//               />
-//             </div>
-
-//             {/* Submit Button */}
-//             <button
-//               type="submit"
-//               className="w-full py-3 rounded-lg text-white font-semibold bg-[#7EC1B1]  transition-all duration-300"
-//             >
-//               Done
-//             </button>
-
-//           </form>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default ResetPassword;
 
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import resetImage from "../../assets/reset-password.jpg"; // Illustration image
+import resetImage from "../../assets/amico.png"; // Illustration image
 
 function ResetPassword() {
   const [password, setPassword] = useState("");
@@ -98,7 +14,7 @@ function ResetPassword() {
     e.preventDefault();
     if (password === confirmPassword && password.length >= 6) {
       // ✅ Perform your password reset logic here
-      navigate("/dashboard"); // Redirect after successful reset
+      navigate("/dashboard"); 
     } else {
       alert("Passwords do not match or are too short (min 6 chars)");
     }
@@ -106,7 +22,7 @@ function ResetPassword() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#7EC1B1] p-6">
-      <div className="flex flex-col lg:flex-row w-full max-w-7xl rounded-3xl overflow-hidden shadow-2xl bg-white">
+      <div className="flex flex-col lg:flex-row w-full max-w-7xl rounded-3xl overflow-hidden  bg-white">
 
         {/* Left Side: Illustration */}
         <div className="hidden lg:flex flex-1 items-center justify-center p-12 bg-[#7EC1B1]">
@@ -124,7 +40,7 @@ function ResetPassword() {
               Reset Password
             </h1>
             <p className="text-gray-600 mb-12 text-center">
-              Please enter your new password to continue.
+              Please enter your new password.
             </p>
 
             <form className="space-y-6" onSubmit={handleSubmit}>

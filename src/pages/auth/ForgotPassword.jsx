@@ -1,78 +1,8 @@
 
-// import React from 'react';
-// import { Link } from "react-router-dom";
-// import forgotpassword from "../../assets/forgot-password.jpg"
-
-// function ForgotPassword() {
-//   return (
-//     <div className="bg-[#7EC1B1] flex items-center justify-center min-h-screen font-sans p-4">
-//       {/* Main Card */}
-//       <div className="relative flex flex-col w-full  md:flex-row md:max-w-4xl g">
-        
-//         {/* Left Side: Illustration */}
-//         <div className="hidden md:flex items-center justify-center p-8 md:p-14 md:w-1/2">
-//           <img 
-//             src={forgotpassword}// Ensure this path is correct
-//             alt="A person confused about their password." 
-//             className="w-full h-full object-contain"
-//           />
-//         </div>
-
-//         {/* Form Container */}
-//         <div className="flex flex-col items-center justify-center  rounded-2xl p-8 md:p-14  bg-white  w-full md:w-1/2">
-//           {/* Header */}
-//           <div className="text-center">
-//             <h1 className="mb-3 text-3xl font-semibold text-[#263138]">Forgot Password?</h1>
-//             <p className="font-light text-[#606060] pt-3 mb-10">
-//               Please enter your registered email to continue.
-//             </p>
-//           </div>
-
-//           {/* Form */}
-//           <form className="w-full">
-//             <div className="mb-4">
-//               <label htmlFor="email" className="block mb-2 text-md text-[#263138]">
-//                 Email address:
-//               </label>
-//               <input
-//                 type="email"
-//                 name="email"
-//                 id="email"
-//                 className="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-//                 placeholder="esteban_schiller@gmail.com"
-//               />
-//             </div>
-
-//             <Link
-//               to="/verify-otp"
-//               className="block text-center w-full bg-[#7EC1B1] text-white p-3 rounded-lg mb-6 mt-6  transition-all"
-//             >
-//               Get OTP
-//             </Link>
-//           </form>
-
-//           {/* Footer Link */}
-//           <div className="text-center text-gray-500">
-//             Remember Password?
-//             {/* FIX: Used <Link> for proper SPA navigation */}
-//             <Link to="/" className="font-normal text-[#007AFF] hover:underline ml-1">
-//               Login
-//             </Link>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default ForgotPassword;
-
-
-
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import forgotpassword from "../../assets/forgot-password.jpg";
+import forgotpassword from "../../assets/Forgot-Password.png";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -103,7 +33,7 @@ const ForgotPassword = () => {
 
   return (
     <div className="min-h-screen bg-[#7EC1B1] flex items-center justify-center p-6">
-      <div className="flex flex-col lg:flex-row w-full max-w-7xl rounded-3xl overflow-hidden shadow-2xl bg-white">
+      <div className="flex flex-col lg:flex-row w-full max-w-7xl rounded-3xl overflow-hidden  bg-white">
         
         {/* Left Side - Image */}
         <div className="hidden lg:flex flex-1 bg-[#7EC1B1] items-center justify-center p-12">
@@ -157,7 +87,7 @@ const ForgotPassword = () => {
 
             {/* Footer Link */}
             <div className="text-center text-gray-500 mt-10">
-              Remember your password?
+              Remember password?
               <a
                 href="/"
                 className="text-blue-500 hover:underline ml-2 font-medium"

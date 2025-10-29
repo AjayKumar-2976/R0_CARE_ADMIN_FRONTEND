@@ -16,7 +16,7 @@ const SendNotification = () => {
       <Header2 />
 
       {/* Horizontal line below header */}
-      <hr className="border border-[#606060]" />
+      <hr className="border border-gray-300" />
 
       {/* Form Container */}
       <div className="w-full flex-1 p-6 md:p-10">
@@ -59,20 +59,21 @@ const SendNotification = () => {
           <label className="mb-1 text-gray-700 font-bold  text-md">
             Message
           </label>
-          <textarea
+          <input
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+                        placeholder="Enter your message..."
+
             rows="5"
-            placeholder="Enter your message..."
-            className="w-full border border-[#606060] p-3 focus:outline-none bg-[#F5F5F5] focus:ring-1 focus:ring-[#0B3366]"
-          ></textarea>
+            className="w-full h-[140px] border border-[#606060] p-3 focus:outline-none bg-[#F5F5F5] focus:ring-1 focus:ring-[#0B3366]"
+          />
         </div>
 
         {/* Center Button */}
         <div className="flex justify-center">
           <button
             onClick={handleSend}
-            className="bg-[#7EC1B1] border rounded-md text-white px-8 py-2 text-sm hover:bg-[##7EC1B1] transition"
+            className="bg-[#7EC1B1] border rounded-md text-white px-16 py-3 text-xl hover:bg-[##7EC1B1] transition"
           >
             Send
           </button>

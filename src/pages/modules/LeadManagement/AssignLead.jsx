@@ -35,9 +35,9 @@ const AssignLead = () => {
               className="w-full border border-[#606060]  bg-[#F5F5F5] px-3 py-3 focus:outline-none focus:ring-2 focus:ring-green-300"
             >
               <option value="">Select</option>
-              <option value="John">John</option>
-              <option value="Michael">Michael</option>
-              <option value="Suresh">Suresh</option>
+              <option value="Venodr">Vendor</option>
+              <option value="Service Engineer">Service Engineer</option>
+              <option value="Admin">Admin</option>
             </select>
           </div>
 
@@ -112,7 +112,7 @@ const AssignLead = () => {
         <div className="flex justify-center mt-6">
           <button
             onClick={handleAssign}
-            className="bg-[#3A953A] text-white px-12 py-3 rounded-lg font-semibold hover:bg-[#67b09b] transition"
+            className="bg-[#7EC1B1] text-white px-12 py-1 cursor-pointer rounded-lg font-semibold hover:bg-[#67b09b] transition"
           >
             Assign
           </button>

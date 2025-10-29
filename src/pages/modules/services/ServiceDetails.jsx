@@ -1,5 +1,6 @@
 
 
+
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header2 from "../../../components/superAdmin/header/Header2";
@@ -103,5 +104,6 @@ const ServiceDetails = () => {
 
 
 export default ServiceDetails;
+
 
 

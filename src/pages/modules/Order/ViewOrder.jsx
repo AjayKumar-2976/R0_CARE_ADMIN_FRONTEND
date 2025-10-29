@@ -429,6 +429,19 @@ const ViewOrder = () => {
   const { state } = useLocation();
   const order = state || {};
 
+  const getStatusColor = (status) => {
+    if (!status) return "bg-gray-200 text-gray-800";
+
+    const formatted = status.toString().toLowerCase().trim().replace(/[-_]/g, " ");
+
+    if (formatted.includes("new")) return "bg-[#FFCC00] text-white";
+    if (formatted.includes("in progress")) return "bg-[#0088FF] text-white";
+    if (formatted.includes("delivered")) return "bg-[#34C759] text-white";
+
+    return "bg-gray-200 text-gray-800";
+  };
+
+
   const defaultPriceDetails = {
     price: 24999,
     discount: -5000,
@@ -462,12 +475,12 @@ const ViewOrder = () => {
   const items = itemsArray || [];
   const itemsSubtotal = items.length
     ? items.reduce(
-        (s, it) =>
-          s +
-          parsePrice(it.price ?? it.unitPrice ?? it.amount) *
-            (it.qty ?? it.quantity ?? 1),
-        0
-      )
+      (s, it) =>
+        s +
+        parsePrice(it.price ?? it.unitPrice ?? it.amount) *
+        (it.qty ?? it.quantity ?? 1),
+      0
+    )
     : 0;
 
   if (itemsArray) {
@@ -550,15 +563,17 @@ const ViewOrder = () => {
           {/* Header Row */}
           <div className="flex items-start justify-between mb-4">
             <div>
-              <h3 className="text-4xl md:text-5xl font-extrabold text-[#263138] leading-tight">
+              <h3 className="text-3xl md:text-3xl font-extrabold text-[#263138] leading-tight">
                 {display.customerName}
               </h3>
-              <div className="text-sm text-gray-500 mt-2">
+              <div className="text-sm text-black mt-2">
                 Order ID: {display.orderId}
               </div>
             </div>
-            <span className="inline-block px-6 py-3 bg-yellow-400 rounded-full text-sm font-semibold md:px-6 md:py-3 shadow-sm">
-              {display.status}
+            <span
+              className={`inline-block px-6 py-2 rounded-full text-sm font-semibold md:px-8 md:py-2 shadow-sm ${getStatusColor(display.status)}`}
+            >
+              {display.status || "NA"}
             </span>
           </div>
 
@@ -691,11 +706,13 @@ const ViewOrder = () => {
           </div>
 
           <div className="mt-4  text-[#263138]">
-            <div className="mt-6 flex justify-center">
-              <button className="px-8 py-3 bg-green-600 text-white rounded-full font-semibold w-full md:max-w-sm">
-                Assign Order
-              </button>
-            </div>
+            {display.status?.toLowerCase().includes("new") && (
+              <div className="mt-6 flex justify-center">
+                <button className="px-12 py-2 bg-green-600 text-white rounded-sm font-semibold md:max-w-sm">
+                  Assign Order
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

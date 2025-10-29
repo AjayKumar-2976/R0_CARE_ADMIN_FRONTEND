@@ -9,7 +9,7 @@ import LoadingPage from "../pages/modules/LoadingPage";
 
 // --- AUTH ---
 import Login from "../pages/auth/Login";
-import SignUp from "../pages/auth/SignUp";
+// import SignUp from "../pages/auth/SignUp";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import VerifyOtp from "../pages/auth/VerifyOtp";
 import ResetPassword from "../pages/auth/ResetPassword";
@@ -21,15 +21,18 @@ import Setting from "../components/superAdmin/pages/Setting";
 
 // --- SERVICES ---
 import Services from "../pages/modules/services/Services";
-import AddService from "../pages/modules/services/AddService";
-import ServiceDetails from "../pages/modules/services/ServiceDetails";
-import EditService from "../pages/modules/services/EditService";
-
+import AddService from "../pages/modules/services/AddService"
+import ServiceDetails from "../pages/modules/services/ServiceDetails"
+import EditService from "../pages/modules/services/EditService"
 
 // --- PRODUCT ---
 import Product from "../pages/modules/product/Product";
-// import AddProduct from "../pages/modules/product/AddProduct";
-import ViewProduct from "../pages/modules/product/ViewProduct";
+
+import ViewProduct from "../pages/modules/product/ViewProduct"
+
+
+
+
 
 // --- TIME SLOT ---
 import TimeSlotAndDate from "../pages/modules/timeSlotAndDate/TimeSlotAndDate";
@@ -57,7 +60,9 @@ import ViewOrder from "../pages/modules/Order/ViewOrder";
 import Offers from "../pages/modules/Offers/Offers";
 import AddOffers from "../pages/modules/Offers/AddOffers";
 
-// --- NOTIFICATION ---
+// --- NOTIFICATION in header---
+import Notification from "../components/superAdmin/header/Notification";
+
 // import SendNotification from "../components/superAdmin/pages/SendNotification";
 import ChatWithUs from "../components/superAdmin/pages/ChatWithUs";
 
@@ -84,6 +89,7 @@ import AddVendor from "../pages/modules/Vendor/AddVendor";
 import EditVendor from "../pages/modules/Vendor/EditVendor";
 import ViewVendor from "../pages/modules/Vendor/ViewVendor";
 
+
 // --- SERVICE ENGINEER ---
 import Engineer from "../pages/modules/ServiceEngineer/Engineer";
 import AddEngineer from "../pages/modules/ServiceEngineer/AddEngineer";
@@ -98,6 +104,7 @@ import ViewCustomer from "../pages/modules/customer/ViewCustomer";
 import LeadManagement from "../pages/modules/LeadManagement/Lead";
 import LeadView from "../pages/modules/LeadManagement/ViewLead";
 import AssignLead from "../pages/modules/LeadManagement/AssignLead";
+
 
 //---- SEND NOTIFICATION AND MESSAGES
 import SendNotification from "../pages/modules/Notification&Messages/SendNotification";
@@ -114,6 +121,7 @@ import ViewRole from "../pages/modules/Roles&Permission/ViewRole";
 import Messages from "../pages/modules/Message/Message";
 import StartNewChat from "../pages/modules/Message/StartNewChat";
 import ChatPage from "../pages/modules/Message/ChatPage";
+
 
 const AdminLayout = () => {
   const [loading, setLoading] = useState(true);
@@ -150,7 +158,7 @@ const AdminLayout = () => {
             <Routes>
               {/* AUTH */}
               <Route path="/" element={<Login />} />
-              <Route path="/signup" element={<SignUp />} />
+              {/* <Route path="/signup" element={<SignUp />} /> */}
               <Route path="/forgetPassword" element={<ForgotPassword />} />
               <Route path="/verify-otp" element={<VerifyOtp />} />
               <Route path="/resetpassword" element={<ResetPassword />} />
@@ -162,9 +170,22 @@ const AdminLayout = () => {
 
               {/* SERVICES */}
               <Route path="/services" element={<Services />} />
+
+              <Route path="/services/addservice" element={<AddService />} />
+
                      <Route path="/services/addservice" element={<AddService />} />
+ 
               <Route path="/services/servicedetails" element={<ServiceDetails/>} />
               <Route path="/services/editservice" element={<EditService/>} />
+
+
+
+
+
+              {/* PRODUCT */}
+              <Route path="/product" element={<Product />} />
+              
+              <Route path="/product/product-details" element={<ViewProduct />} />
 
 
 
@@ -172,6 +193,7 @@ const AdminLayout = () => {
               <Route path="/product" element={<Product />} />
               {/* <Route path="/product/addproduct" element={<AddProduct />} /> */}
               <Route path="/product/product-details" element={<ViewProduct/>}/>
+
 
               {/* TIME SLOT */}
               <Route path="/time-slot" element={<TimeSlotAndDate />} />
@@ -200,7 +222,7 @@ const AdminLayout = () => {
               />
 
                <Route path="/order-management" element={<Order />} />
-              <Route path="/orders/view/:id" element={<ViewOrder />} />
+              <Route path="/order-management/view/" element={<ViewOrder />} />
 
 
               {/* OFFERS */}
@@ -274,11 +296,11 @@ const AdminLayout = () => {
               {/* LEAD MANAGEMENT */}
               <Route path="/lead-management" element={<LeadManagement />} />
               <Route
-                path="/lead-management/view/:leadId"
+                path="/lead-management/view"
                 element={<LeadView />}
               />
               <Route
-                path="/lead-management/assign-lead"
+                path="/lead-management/view/assign-lead"
                 element={<AssignLead />}
               />
 
@@ -302,6 +324,9 @@ const AdminLayout = () => {
   <Route path="/message/newchat" element={<StartNewChat />} />
 
   <Route path="/message/newchat/chat" element={<ChatPage />} />
+
+                <Route path="/notifications" element={<Notification />} />
+
 
             </Routes>
           </ResponsiveLayout>

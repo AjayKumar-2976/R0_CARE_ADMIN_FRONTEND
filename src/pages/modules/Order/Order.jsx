@@ -9,8 +9,8 @@ import searchIcon from "../../../assets/search.png";
 const Order = () => {
   const navigate = useNavigate();
   const [orders] = useState([
-    { id: 1, orderId: "OD54487", customerName: "Ajay Kumar", product: "Kent Grand Plus RO", orderDate: "21-10-2025", status: "Assigned" },
-    { id: 2, orderId: "OD54488", customerName: "Ravi Singh", product: "Kent Grand Plus RO", orderDate: "21-10-2025", status: "Accepted" },
+    { id: 1, orderId: "OD54487", customerName: "Ajay Kumar", product: "Kent Grand Plus RO", orderDate: "21-10-2025", status: "New" },
+    { id: 2, orderId: "OD54488", customerName: "Ravi Singh", product: "Kent Grand Plus RO", orderDate: "21-10-2025", status: "New" },
     { id: 3, orderId: "OD54489", customerName: "Priya Sharma", product: "Kent Grand Plus RO", orderDate: "21-10-2025", status: "In-progress" },
     { id: 4, orderId: "OD54490", customerName: "Suresh Reddy", product: "Kent Grand Plus RO", orderDate: "21-10-2025", status: "In-progress" },
     { id: 5, orderId: "OD54491", customerName: "Anita Verma", product: "Kent Grand Plus RO", orderDate: "21-10-2025", status: "In-progress" },
@@ -41,10 +41,9 @@ const Order = () => {
   const ordersPaginated = ordersFiltered.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
   const statusBadgeClass = (status) =>
-    status === "Assigned"
-      ? "text-yellow-600"
-      : status === "Accepted"
-      ? "text-pink-500"
+    status === "New"
+      ? "text-yellow-500"
+      
       : status === "In-progress"
       ? "text-blue-500"
       : "text-green-600";
@@ -85,7 +84,7 @@ const Order = () => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search"
-              className="pl-12 pr-4 h-10 w-full border rounded-full bg-gray-100 border-gray-300 placeholder-gray-500 text-[15px] focus:outline-none focus:ring-2 focus:ring-[#7EC1B1]"
+              className="pl-12 pr-4 h-10 w-60 border rounded-sm bg-gray-100  placeholder-gray-500 text-[15px] "
             />
           </div>
 
@@ -100,8 +99,8 @@ const Order = () => {
               className="p-2 border rounded-lg bg-[#F3F4F6] focus:outline-none"
             >
               <option value="">Select Status</option>
-              <option value="Assigned">Assigned</option>
-              <option value="Accepted">Accepted</option>
+              <option value="New">New</option>
+           
               <option value="In-progress">In-progress</option>
               <option value="Delivered">Delivered</option>
             </select>
@@ -111,8 +110,8 @@ const Order = () => {
         {/* Table */}
         {/* Desktop / Tablet Table (visible from sm and up) */}
         <div className="sm:block hidden">
-          <div className="overflow-x-auto rounded-lg border w-full">
-            <table className="w-full border-collapse min-w-[900px] text-center">
+          <div className="overflow-x-auto border-gray-500  border w-full">
+            <table className="w-full border-collapse min-w-[500px] text-center">
               <thead>
                 <tr className="bg-[#F3F4F6] text-gray-700">
                   {["Sr.No.", "Order ID", "Customer Name", "Product Ordered", "Order Date", "Status", "Action"].map((h) => (
@@ -124,7 +123,7 @@ const Order = () => {
               </thead>
               <tbody>
                 {ordersPaginated.map((o, idx) => (
-                  <tr key={o.id} className="border-t hover:bg-gray-50 transition-all duration-200">
+                  <tr key={o.id} className="border-t border-gray-300  transition-all duration-200">
                     <td className="p-3 align-middle">{(page - 1) * rowsPerPage + idx + 1}</td>
                     <td className="p-3 align-middle">{o.orderId}</td>
                     <td className="p-3 align-middle">{o.customerName}</td>
@@ -143,7 +142,7 @@ const Order = () => {
                       <div className="flex justify-center items-center">
                         <button
                           className="text-[#0088FF] hover:text-blue-700 flex items-center justify-center"
-                          onClick={() => navigate(`/orders/view/${o.orderId}`, { state: o })}
+                          onClick={() => navigate("/order-management/view/", { state: o })}
                         >
                           <GoEye className="text-lg" />
                         </button>
@@ -186,7 +185,7 @@ const Order = () => {
               <div className="mt-3 flex justify-end">
                 <button
                   className="text-[#0088FF] hover:text-blue-700 flex items-center gap-2"
-                  onClick={() => navigate(`/orders/view/${o.orderId}`, { state: o })}
+                  onClick={() => navigate(`/order-management/view/`, { state: o })}
                 >
                   <GoEye className="text-lg" />
                   <span className="text-sm">View</span>

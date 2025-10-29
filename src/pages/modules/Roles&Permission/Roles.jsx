@@ -1,10 +1,203 @@
+// import { useState } from "react";
+// import { FiSearch, FiEdit, FiEye, FiTrash2 } from "react-icons/fi";
+// import Header2 from "../../../components/superAdmin/header/Header2";
+// import { useNavigate } from "react-router-dom";
+
+// const RolesAndPermissions = () => {
+//   const navigate = useNavigate();
+
+//   const tableData = [
+//     { id: 1, name: "John Doe", role: "Sub Admin", phone: "+91 98765 43210", email: "john@example.com", password: "******" },
+//     { id: 2, name: "Jane Smith", role: "Sub Admin", phone: "+91 91234 56789", email: "jane@example.com", password: "******" },
+//     { id: 3, name: "Alex Ray", role: "Sub Admin", phone: "+91 99887 65432", email: "alex@example.com", password: "******" },
+//     { id: 4, name: "Michael Brown", role: "Sub Admin", phone: "+91 90011 22334", email: "michael@example.com", password: "******" },
+//     { id: 5, name: "Emily Davis", role: "Sub Admin", phone: "+91 81234 56780", email: "emily@example.com", password: "******" },
+//     { id: 6, name: "Chris Wilson", role: "Sub Admin", phone: "+91 76543 21987", email: "chris@example.com", password: "******" },
+//     { id: 7, name: "Sophia Johnson", role: "Sub Admin", phone: "+91 78965 43210", email: "sophia@example.com", password: "******" },
+//     { id: 8, name: "Daniel Lee", role: "Sub Admin", phone: "+91 84567 12345", email: "daniel@example.com", password: "******" },
+//     { id: 9, name: "Olivia Martin", role: "Sub Admin", phone: "+91 81245 96325", email: "olivia@example.com", password: "******" },
+//     { id: 10, name: "William Taylor", role: "Sub Admin", phone: "+91 79999 88888", email: "william@example.com", password: "******" },
+//   ];
+
+//   const [entriesPerPage, setEntriesPerPage] = useState(8);
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [search, setSearch] = useState("");
+
+//   const filteredRows = tableData.filter((row) =>
+//     row.name.toLowerCase().includes(search.toLowerCase()) ||
+//     row.email.toLowerCase().includes(search.toLowerCase()) ||
+//     row.phone.toLowerCase().includes(search.toLowerCase())
+//   );
+
+//   const totalPages = Math.ceil(filteredRows.length / entriesPerPage);
+//   const indexOfLastItem = currentPage * entriesPerPage;
+//   const indexOfFirstItem = indexOfLastItem - entriesPerPage;
+//   const currentItems = filteredRows.slice(indexOfFirstItem, indexOfLastItem);
+
+//   const handlePrevPage = () => currentPage > 1 && setCurrentPage(currentPage - 1);
+//   const handleNextPage = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
+//   const handlePageChange = (page) => setCurrentPage(page);
+
+//   return (
+//     <div className="bg-gray-100 p-4 h-full overflow-y-auto flex flex-col gap-6 font-poppins">
+
+      
+//       <Header2 title="Roles & Permissions" />
+
+//       {/* Top Controls */}
+//       <div className="bg-white p-4 sm:p-6 rounded-lg shadow flex flex-wrap items-center justify-between gap-6">
+        
+//         {/* Show Entries */}
+//         <div className="flex items-center gap-2">
+//           <span className="text-[16px]">Show</span>
+//           <select
+//             value={entriesPerPage}
+//             onChange={(e) => setEntriesPerPage(Number(e.target.value))}
+//             className="p-2 border rounded w-[80px] bg-[#F5F5F5]"
+//           >
+//             {[8, 15, 25].map((num) => (
+//               <option key={num} value={num}>
+//                 {num}
+//               </option>
+//             ))}
+//           </select>
+//           <span className="text-[16px]">Entries</span>
+//         </div>
+
+//         {/* Search */}
+//         <div className="flex-1 flex justify-center w-full sm:w-auto">
+//           <div className="relative w-full max-w-[260px]">
+//             <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-lg" />
+//             <input
+//               type="text"
+//               placeholder="Search"
+//               value={search}
+//               onChange={(e) => setSearch(e.target.value)}
+//               className="w-full p-2 pl-10 border rounded focus:outline-none bg-[#F5F5F5]"
+//             />
+//           </div>
+//         </div>
+
+//         {/* Role Filter */}
+//         <select className="p-2 border rounded bg-[#F5F5F5]">
+//                     <option>Select Role</option>
+
+//           <option>Sub Admin</option>
+//           <option>Admin</option>
+//           <option>Manager</option>
+//         </select>
+
+//         {/* Create Sub Admin Button */}
+//         <button
+//           onClick={() => navigate("/roles-permission/create-sub-admin")}
+//           className="bg-[#7EC1B1] hover:bg-[#68a697] text-white px-6 py-2 rounded-lg font-medium transition"
+//         >
+//           Create Sub Admin
+//         </button>
+//       </div>
+
+//       {/* Table */}
+//       <div className="bg-white p-3 sm:p-5 rounded-lg shadow flex flex-col gap-4 overflow-x-auto">
+//         <table className="table-auto w-full border border-[#CACACA] min-w-[900px]">
+//           <thead>
+//             <tr className="bg-[#F5F5F5] text-center">
+//               {["S.No", "Sub Admin Name", "Role", "Phone Number", "Email", "Password", "Action"].map((header, idx) => (
+//                 <th key={idx} className="p-3 font-medium text-[18px]">
+//                   {header}
+//                 </th>
+//               ))}
+//             </tr>
+//           </thead>
+
+//           <tbody className="text-center">
+//             {currentItems.length > 0 ? (
+//               currentItems.map((row) => (
+//                 <tr key={row.id} className="bg-white text-[#263138]">
+//                   <td className="p-3">{row.id}</td>
+//                   <td className="p-3 capitalize">{row.name}</td>
+//                   <td className="p-3">{row.role}</td>
+//                   <td className="p-3">{row.phone}</td>
+//                   <td className="p-3">{row.email}</td>
+//                   <td className="p-3">{row.password}</td>
+//                   <td className="p-3 flex justify-center items-center gap-4">
+//                     <FiEye
+//                       className="text-blue-600 w-5 h-5 cursor-pointer hover:scale-110 transition"
+//                       onClick={() =>
+//                         navigate(`/roles-permission/view-sub-admin/${row.id}`, { state: { user: row } })
+//                       }
+//                     />
+//                     <FiEdit
+//                       className="text-green-600 w-5 h-5 cursor-pointer hover:scale-110 transition"
+//                       onClick={() =>
+//                         navigate(`/roles-permission/edit-sub-admin/${row.id}`, { state: { user: row } })
+//                       }
+//                     />
+//                     <FiTrash2 className="text-red-600 w-5 h-5 cursor-pointer hover:scale-110 transition" />
+//                   </td>
+//                 </tr>
+//               ))
+//             ) : (
+//               <tr>
+//                 <td colSpan="7" className="p-4 text-gray-500">
+//                   No Sub Admins Found
+//                 </td>
+//               </tr>
+//             )}
+//           </tbody>
+//         </table>
+
+//         {/* Pagination */}
+//         <div className="flex flex-col sm:flex-row justify-between items-center mt-4 gap-3 font-400 text-[#263138]">
+//           <span>
+//             Showing {Math.min(indexOfFirstItem + 1, filteredRows.length)} to{" "}
+//             {Math.min(indexOfLastItem, filteredRows.length)} of {filteredRows.length} entries
+//           </span>
+
+//           <div className="flex flex-wrap gap-2 text-[#7EC1B1] justify-center">
+//             <button
+//               onClick={handlePrevPage}
+//               disabled={currentPage === 1}
+//               className="px-3 py-1 border border-[#7EC1B1] rounded-lg disabled:opacity-50"
+//             >
+//               Previous
+//             </button>
+
+//             {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+//               <button
+//                 key={num}
+//                 onClick={() => handlePageChange(num)}
+//                 className={`p-2 border rounded-lg border-[#7EC1B1] w-[36px] ${
+//                   currentPage === num ? "bg-[#7EC1B1] text-white" : ""
+//                 }`}
+//               >
+//                 {num}
+//               </button>
+//             ))}
+
+//             <button
+//               onClick={handleNextPage}
+//               disabled={currentPage === totalPages}
+//               className="px-3 py-1 border border-[#7EC1B1] rounded-lg disabled:opacity-50"
+//             >
+//               Next
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default RolesAndPermissions;
+
 import { useState } from "react";
 import { FiSearch, FiEdit, FiEye, FiTrash2 } from "react-icons/fi";
 import Header2 from "../../../components/superAdmin/header/Header2";
 import { useNavigate } from "react-router-dom";
 
-
 const RolesAndPermissions = () => {
+  const navigate = useNavigate();
+
   const tableData = [
     { id: 1, name: "John Doe", role: "Sub Admin", phone: "+91 98765 43210", email: "john@example.com", password: "******" },
     { id: 2, name: "Jane Smith", role: "Sub Admin", phone: "+91 91234 56789", email: "jane@example.com", password: "******" },
@@ -17,14 +210,11 @@ const RolesAndPermissions = () => {
     { id: 9, name: "Olivia Martin", role: "Sub Admin", phone: "+91 81245 96325", email: "olivia@example.com", password: "******" },
     { id: 10, name: "William Taylor", role: "Sub Admin", phone: "+91 79999 88888", email: "william@example.com", password: "******" },
   ];
-    const navigate = useNavigate(); 
-
 
   const [entriesPerPage, setEntriesPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
 
-  // Filter data by search
   const filteredRows = tableData.filter((row) =>
     row.name.toLowerCase().includes(search.toLowerCase()) ||
     row.email.toLowerCase().includes(search.toLowerCase()) ||
@@ -41,148 +231,140 @@ const RolesAndPermissions = () => {
   const handlePageChange = (page) => setCurrentPage(page);
 
   return (
-    <div className="px-10 mt-6 w-full font-[Poppins] text-black">
-      <Header2/>
+    <div className="bg-gray-100 p-4 h-full overflow-y-auto font-poppins">
+      <div className="bg-white p-5 md:p-8 rounded-lg shadow flex flex-col gap-6">
 
-      {/* Horizontal Line */}
-      <div className="border-b border-gray-300 mb-6"></div>
+        <Header2 title="Roles & Permissions" />
 
-      {/* Filters Section */}
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4 w-full font-[Poppins]">
-        {/* Show Entries */}
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <label htmlFor="entries" className="text-gray-700 text-sm font-medium">
-            Show
-          </label>
-          <select
-            id="entries"
-            value={entriesPerPage}
-            onChange={(e) => setEntriesPerPage(Number(e.target.value))}
-            className="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-[#7EC1B1]"
-          >
-            <option value={8}>8</option>
-            <option value={15}>15</option>
-            <option value={25}>25</option>
-          </select>
-          <span className="text-gray-700 text-sm font-medium">entries</span>
-        </div>
+        {/* Top Controls */}
+        <div className="flex flex-wrap items-center justify-between gap-4 w-full">
 
-        <div className="flex flex-1 justify-between items-center gap-3 flex-wrap">
-          {/* Search Bar */}
-          <div className="relative flex-1 max-w-xs">
-            <FiSearch className="absolute left-3 top-3 text-gray-400 text-lg" />
+          {/* Entries */}
+          <div className="flex items-center gap-2">
+            <span className="text-[16px]">Show</span>
+            <select
+              value={entriesPerPage}
+              onChange={(e) => setEntriesPerPage(Number(e.target.value))}
+              className="p-2 border rounded w-[80px] bg-[#F5F5F5]"
+            >
+              {[8, 15, 25].map((num) => (
+                <option key={num} value={num}>{num}</option>
+              ))}
+            </select>
+            <span className="text-[16px]">Entries</span>
+          </div>
+
+          {/* Search */}
+          <div className="relative w-full sm:w-[260px]">
+            <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-lg" />
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-10 pr-4 py-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-[#7EC1B1] text-sm font-[Poppins]"
+              className="w-full p-2 pl-10 border rounded bg-[#F5F5F5]"
             />
           </div>
 
-          {/* Role Filter */}
-          <select className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#7EC1B1] text-sm w-36 font-[Poppins]">
+          {/* Filter */}
+          <select className="p-2 border rounded bg-[#F5F5F5]">
+            <option>Select Role</option>
             <option>Sub Admin</option>
             <option>Admin</option>
             <option>Manager</option>
           </select>
 
-          {/* Create Button */}
-         <button
-            onClick={() => navigate("/roles-permission/create-sub-admin")} 
-            className="bg-[#7EC1B1] text-white px-4 py-2 rounded-md hover:bg-[#66b0a0] transition text-sm whitespace-nowrap font-[Poppins]"
+          {/* Button */}
+          <button
+            onClick={() => navigate("/roles-permission/create-sub-admin")}
+            className="bg-[#7EC1B1] hover:bg-[#68a697] text-white px-6 py-2 rounded-lg font-medium"
           >
             Create Sub Admin
           </button>
         </div>
-      </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-xl shadow-md overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200 font-Poppins">
-          <thead className="bg-[#EAEAEA]">
-            <tr>
-              {["S.No", "Sub Admin Name", "Role", "Phone Number", "Email", "Password", "Actions"].map(
-                (header, idx) => (
-                  <th
-                    key={idx}
-                    className="px-6 py-3 text-left text-base font-semibold text-gray-700"
-                  >
-                    {header}
-                  </th>
-                )
-              )}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {currentItems.map((row) => (
-              <tr key={row.id} className="hover:bg-blue-50 transition">
-                <td className="px-6 py-4 text-base font-Poppins ">{row.id}</td>
-                <td className="px-6 py-4 text-base font-Poppins">{row.name}</td>
-                <td className="px-6 py-4 text-base font-Poppins">{row.role}</td>
-                <td className="px-6 py-4 text-base font-Poppins">{row.phone}</td>
-                <td className="px-6 py-4 text-base font-Poppins">{row.email}</td>
-                <td className="px-6 py-4 text-base font-Poppins">{row.password}</td>
-                <td className="px-6 py-4 text-base flex items-center gap-3">
-                  <FiEye className="text-blue-600 cursor-pointer w-5 h-5"
-                    onClick={() => navigate(`/roles-permission/view-sub-admin/${row.id}`,{ state: { user: row } } )}
-/>
-                  <FiEdit className="text-blue-600 cursor-pointer w-5 h-5" 
-                    onClick={() => navigate(`/roles-permission/edit-sub-admin/${row.id}`, { state: { user: row } })}
-/>
-                  <FiTrash2 className="text-red-600 cursor-pointer w-5 h-5"/>
-                </td>
+        {/* Table */}
+        <div className="overflow-x-auto">
+          <table className="table-auto w-full border border-[#CACACA] min-w-[950px] rounded-lg">
+            <thead>
+              <tr className="bg-[#F5F5F5] text-center">
+                {["S.No", "Sub Admin Name", "Role", "Phone", "Email", "Password", "Action"].map(
+                  (head, i) => (
+                    <th key={i} className="p-3 font-medium text-[18px]">{head}</th>
+                  )
+                )}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Pagination */}
-      <div className="flex flex-col sm:flex-row justify-between items-center mt-4 gap-4 font-[Poppins] text-black w-full">
-        {/* Showing Entries */}
-        <span className="text-sm font-medium">
-          Showing {Math.min((currentPage - 1) * entriesPerPage + 1, filteredRows.length)} to{" "}
-          {Math.min(currentPage * entriesPerPage, filteredRows.length)} of {filteredRows.length} entries
-        </span>
-
-        {/* Pagination Buttons */}
-        <div className="flex flex-wrap gap-2 justify-center items-center font-[Poppins]">
-          <button
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-            className={`px-3 py-1 rounded-lg border text-sm font-medium transition 
-            ${currentPage === 1 
-              ? "text-gray-400 border-gray-300 cursor-not-allowed" 
-              : "text-[#7EC1B1] border-[#7EC1B1] hover:bg-[#7EC1B1] hover:text-white"}`}
-          >
-            Previous
-          </button>
-
-          {[...Array(totalPages)].map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => handlePageChange(idx + 1)}
-              className={`w-[36px] h-[36px] rounded-lg border text-sm font-medium transition 
-              ${currentPage === idx + 1 
-                ? "bg-[#7EC1B1] text-white border-[#7EC1B1]" 
-                : "border-[#7EC1B1] text-[#7EC1B1] hover:bg-[#7EC1B1] hover:text-white"}`}
-            >
-              {idx + 1}
-            </button>
-          ))}
-
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            className={`px-3 py-1 rounded-lg border text-sm font-medium transition 
-            ${currentPage === totalPages 
-              ? "text-gray-400 border-gray-300 cursor-not-allowed" 
-              : "text-[#7EC1B1] border-[#7EC1B1] hover:bg-[#7EC1B1] hover:text-white"}`}
-          >
-            Next
-          </button>
+            </thead>
+            <tbody className="text-center">
+              {currentItems.length > 0 ? (
+                currentItems.map((row) => (
+                  <tr key={row.id}>
+                    <td className="p-3">{row.id}</td>
+                    <td className="p-3 capitalize">{row.name}</td>
+                    <td className="p-3">{row.role}</td>
+                    <td className="p-3">{row.phone}</td>
+                    <td className="p-3">{row.email}</td>
+                    <td className="p-3">{row.password}</td>
+                    <td className="p-3 flex justify-center gap-3">
+                      <FiEye
+                        className="text-blue-600 w-5 h-5 cursor-pointer"
+                        onClick={() => navigate(`/roles-permission/view-sub-admin/${row.id}`, { state: { user: row } })}
+                      />
+                      <FiEdit
+                        className="text-green-600 w-5 h-5 cursor-pointer"
+                        onClick={() => navigate(`/roles-permission/edit-sub-admin/${row.id}`, { state: { user: row } })}
+                      />
+                      <FiTrash2 className="text-red-600 w-5 h-5 cursor-pointer" />
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="7" className="p-4 text-gray-500">No Sub Admins Found</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
+
+        {/* Pagination */}
+        <div className="flex flex-wrap justify-between items-center mt-2 gap-3">
+          <span>
+            Showing {Math.min(indexOfFirstItem + 1, filteredRows.length)} to{" "}
+            {Math.min(indexOfLastItem, filteredRows.length)} of {filteredRows.length} entries
+          </span>
+
+          <div className="flex flex-wrap gap-2 text-[#7EC1B1]">
+            <button
+              disabled={currentPage === 1}
+              onClick={handlePrevPage}
+              className="px-3 py-1 border border-[#7EC1B1] rounded-lg disabled:opacity-50"
+            >
+              Previous
+            </button>
+
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+              <button
+                key={n}
+                onClick={() => handlePageChange(n)}
+                className={`px-2 py-1 border border-[#7EC1B1] rounded-lg ${
+                  currentPage === n ? "bg-[#7EC1B1] text-white" : ""
+                }`}
+              >
+                {n}
+              </button>
+            ))}
+
+            <button
+              disabled={currentPage === totalPages}
+              onClick={handleNextPage}
+              className="px-3 py-1 border border-[#7EC1B1] rounded-lg disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   );
